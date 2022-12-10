@@ -64,4 +64,16 @@ export class AppService {
       }
     });
   }
+
+  markRecieved(serviceId: string) {
+    this.prisma.Mailauditlogs.update({
+      where: {
+        serviceId: serviceId,
+      },
+      data: {
+        recieved: 1,
+      },
+    });
+    return;
+  }
 }

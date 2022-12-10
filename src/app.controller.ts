@@ -35,4 +35,9 @@ export class AppController {
         return error;
       });
   }
+
+  @Post('email/analytics/recieved/:messageId')
+  markRecieved() {
+    return this.appService.markRecieved();
+  }
 }

@@ -30,18 +30,14 @@ export class EmailService {
           };
 
           const response = await client.messages.create(DOMAIN, messageData);
-
-          console.log('this is response', response);
-          console.log('starting creating data');
           await this.prisma.mailauditlogs.create({
             data: {
               sent: 1,
               email: userData[i].email,
               userId: userData[i].id,
-              serviceId: '',
+              serviceId: response.message,
             },
           });
-          console.log('done creating data');
         }
         resolve();
       } catch (error) {
